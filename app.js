@@ -16,8 +16,9 @@ time.appendChild(p2);
 time.appendChild(p3);
 time.appendChild(p4);
 time.appendChild(p5);
-p4.textContent = ':';
-p2.textContent = ':';
+
+
+
 
 
 setInterval(function displayTime() {
@@ -38,6 +39,8 @@ setInterval(function displayTime() {
     } else {
         p1.textContent = hours;
     }
+
+    p2.textContent = ':';
     
     if (minutes.length === 1)  {
         var twoIntegerMinute = addZero.concat(minutes);
@@ -46,6 +49,8 @@ setInterval(function displayTime() {
         p3.textContent = minutes;
     }
 
+    p4.textContent = ':';
+
     if (seconds.length === 1)  {
         var twoIntegerSeconds = addZero.concat(seconds);
         p5.textContent = twoIntegerSeconds;
@@ -53,4 +58,4 @@ setInterval(function displayTime() {
         p5.textContent = seconds;
     }
 
-}, 1000)
+}, 250)

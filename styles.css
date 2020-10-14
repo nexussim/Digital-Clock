@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: #2a5dbb;
 }
 #flexContainer {
     display: flex;
@@ -54,5 +55,5 @@ body {
     src: url('fonts/digital-7\ \(mono\).ttf');
 }
 
-p {}
+
 
