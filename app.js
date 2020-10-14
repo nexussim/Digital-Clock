@@ -6,16 +6,21 @@
 // live time
 
 var time = document.getElementById('time');
+var amPm = document.getElementById('AmPmPosition');
 var p1 = document.createElement('p');
 var p2 = document.createElement('p');
 var p3 = document.createElement('p');
 var p4 = document.createElement('p');
 var p5 = document.createElement('p');
+var p6 = document.createElement('p');
+var p7 = document.createElement('p');
 time.appendChild(p1);
 time.appendChild(p2);
 time.appendChild(p3);
 time.appendChild(p4);
 time.appendChild(p5);
+time.appendChild(p6);
+time.appendChild(p7);
 
 
 
@@ -56,6 +61,12 @@ setInterval(function displayTime() {
         p5.textContent = twoIntegerSeconds;
     } else {
         p5.textContent = seconds;
+    }
+
+    if (hours < 12) {
+        p6.textContent = 'am';
+    } else {
+        p6.textContent = 'pm';
     }
 
 }, 250)
