@@ -26,17 +26,19 @@ setInterval(function displayTime() {
     let currentTime = new Date();
     let getHours = currentTime.getHours();
 
+    if (getHours < 12) {
+        amPm.textContent = 'am';
+    } else {
+        amPm.textContent = 'pm';
+    }
+
     if (timeFormat.attributes.completed.value === 'false') {
         getHours = currentTime.getHours();
     } else {
         getHours = hours12(getHours);
     }
     
-    if (getHours < 12) {
-        amPm.textContent = 'am';
-    } else {
-        amPm.textContent = 'pm';
-    }
+    
     // ADD EVENT LISTENER FOR ABILITY TO CHOOSE MILITARY OR REGULAR TIME
     
     let hours = getHours.toString();
