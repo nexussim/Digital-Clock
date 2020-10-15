@@ -1,48 +1,62 @@
-var time = document.getElementById('time');
-var amPm = document.getElementById('AmPmPosition');
-var div1 = document.createElement('div');
-var div2 = document.createElement('div');
-var div3 = document.createElement('div');
-var div4 = document.createElement('div');
-var div5 = document.createElement('div');
-var div6 = document.createElement('div');
-time.appendChild(div1);
-time.appendChild(div2);
-time.appendChild(div3);
-time.appendChild(div4);
-time.appendChild(div5);
-time.appendChild(div6);
+let time = document.getElementById('time');
+let amPm = document.getElementById('AmPmPosition');
+let timeFormat = document.getElementById('timeFormat');
+timeFormat.setAttribute('completed', false)
+let divHour = document.createElement('div');
+let divMinutesColon = document.createElement('div');
+let divMinutes = document.createElement('div');
+let divSecondsColon = document.createElement('div');
+let divSeconds = document.createElement('div');
+time.appendChild(divHour);
+time.appendChild(divMinutesColon);
+time.appendChild(divMinutes);
+time.appendChild(divSecondsColon);
+time.appendChild(divSeconds);
 
+function changeFormatListener() {
+    if (timeFormat.attributes.completed.value === 'false') {
+        timeFormat.attributes.completed.value = 'true';
+    } else {
+        timeFormat.attributes.completed.value = 'false';
+    }
+}
 
 setInterval(function displayTime() {
     
     let currentTime = new Date();
     let getHours = currentTime.getHours();
-    getHours = hours12(currentTime);
+
+    if (timeFormat.attributes.completed.value === 'false') {
+        getHours = currentTime.getHours();
+    } else {
+        getHours = hours12(currentTime);
+    }
+    
+    if (getHours < 12) {
+        amPm.textContent = 'am';
+    } else {
+        amPm.textContent = 'pm';
+    }
+    // ADD EVENT LISTENER FOR ABILITY TO CHOOSE MILITARY OR REGULAR TIME
+    
     let hours = getHours.toString();
     let getMinutes = currentTime.getMinutes();
     let minutes = getMinutes.toString();
     let getSeconds = currentTime.getSeconds();
     let seconds = getSeconds.toString();
 
-    addDigit(hours, div1)
-    div2.textContent = ':';
-    addDigit(minutes, div3)
-    div4.textContent = ':';
-    addDigit(seconds, div5)
+    addDigit(hours, divHour)
+    divMinutesColon.textContent = ':';
+    addDigit(minutes, divMinutes)
+    divSecondsColon.textContent = ':';
+    addDigit(seconds, divSeconds)
     
-    if (hours < 12) {
-        amPm.textContent = 'am';
-    } else {
-        amPm.textContent = 'pm';
-    }
-
 }, 250)
 
 function addDigit(time, location) {
-    var addZero = '0';
+    let addZero = '0';
     if (time.length === 1)  {
-        var twoIntegerHour = addZero.concat(time);
+        let twoIntegerHour = addZero.concat(time);
         location.textContent = twoIntegerHour;
     } else {
         location.textContent = time;
@@ -50,5 +64,5 @@ function addDigit(time, location) {
 }
 
 function hours12(date) { 
-    return (date.getHours() + 24) % 12 || 12; 
+    return (date + 24) % 12 || 12; 
 }
