@@ -29,7 +29,7 @@ setInterval(function displayTime() {
     if (timeFormat.attributes.completed.value === 'false') {
         getHours = currentTime.getHours();
     } else {
-        getHours = hours12(currentTime);
+        getHours = hours12(getHours);
     }
     
     if (getHours < 12) {
